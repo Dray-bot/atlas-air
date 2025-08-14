@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { FaStar } from 'react-icons/fa'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination, Autoplay } from 'swiper/modules'
+import Image from 'next/image'
 import 'swiper/css'
 import 'swiper/css/pagination'
 
@@ -40,12 +41,16 @@ export default function Testimonials() {
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
     >
-      <img
+      <Image
         src={testimonial.image}
         alt={testimonial.name}
+        width={96}
+        height={96}
         className="w-24 h-24 rounded-full mb-4 object-cover border-4 border-blue-100 shadow-md"
       />
-      <p className="text-lg text-blue-800 italic mb-4 leading-relaxed">"{testimonial.review}"</p>
+      <p className="text-lg text-blue-800 italic mb-4 leading-relaxed">
+        &quot;{testimonial.review}&quot;
+      </p>
       <div className="flex justify-center mb-2">
         {Array.from({ length: testimonial.rating }).map((_, i) => (
           <FaStar key={i} className="text-yellow-400" />
@@ -61,7 +66,6 @@ export default function Testimonials() {
       id="testimonials"
       className="relative py-24 px-6 bg-gradient-to-b from-white to-blue-50 overflow-hidden"
     >
-      {/* Background accents */}
       <div className="absolute top-0 left-0 w-80 h-80 bg-blue-100 rounded-full opacity-20 blur-3xl -translate-x-1/3 -translate-y-1/3 -z-10"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-yellow-100 rounded-full opacity-20 blur-3xl translate-x-1/3 translate-y-1/3 -z-10"></div>
 
@@ -75,7 +79,6 @@ export default function Testimonials() {
         What Our Passengers Say
       </motion.h2>
 
-      {/* Swiper on mobile */}
       <div className="block md:hidden">
         <Swiper
           spaceBetween={20}
@@ -93,7 +96,6 @@ export default function Testimonials() {
         </Swiper>
       </div>
 
-      {/* Grid on desktop */}
       <div className="hidden md:grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
         {testimonials.map((t, i) => (
           <Card key={i} testimonial={t} />
